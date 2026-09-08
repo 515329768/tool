@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片格式转换 - 实用小工具集</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/tool.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="../index.html">← 返回工具首页</a>
+    </nav>
+
+    <header class="header">
+      <h1>图片格式转换</h1>
+      <p class="subtitle">支持 PNG / JPG 格式转换，可设置尺寸，单张或批量处理</p>
+    </header>
+
+    <main class="main">
+      <section class="card upload-section">
+        <div id="dropZone" class="drop-zone">
+          <div class="drop-zone-inner">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+            </svg>
+            <p class="drop-text">拖拽图片到此处，或点击选择文件</p>
+            <p class="drop-hint">支持 JPG、PNG、GIF、WebP、BMP 等常见格式，可多选</p>
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            <button type="button" id="selectBtn" class="btn btn-primary">选择图片</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card settings-section">
+        <h2 class="card-title">转换设置</h2>
+        <div class="settings-grid">
+          <div class="form-group">
+            <label for="outputFormat">输出格式</label>
+            <select id="outputFormat">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg" selected>JPG</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="qualityGroup">
+            <label for="quality">JPG 质量 <span id="qualityValue">85</span>%</label>
+            <input type="range" id="quality" min="10" max="100" value="85">
+          </div>
+
+          <div class="form-group">
+            <label>尺寸设置</label>
+            <div class="size-mode">
+              <label class="radio-label">
+                <input type="radio" name="sizeMode" value="original" checked>
+                <span>保持原尺寸</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="sizeMode" value="custom">
+                <span>自定义尺寸</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group size-inputs" id="sizeInputs" hidden>
+            <div class="size-row">
+              <label for="targetWidth">宽度 (px)</label>
+              <input type="number" id="targetWidth" min="1" max="10000" placeholder="自动">
+            </div>
+            <div class="size-row">
+              <label for="targetHeight">高度 (px)</label>
+              <input type="number" id="targetHeight" min="1" max="10000" placeholder="自动">
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="keepAspectRatio" checked>
+              <span>保持宽高比</span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="namePrefix">文件名前缀（可选）</label>
+            <input type="text" id="namePrefix" placeholder="converted_">
+          </div>
+        </div>
+
+        <div class="action-bar">
+          <button type="button" id="convertBtn" class="btn btn-primary" disabled>开始转换</button>
+          <button type="button" id="downloadAllBtn" class="btn btn-secondary" disabled>打包下载全部</button>
+          <button type="button" id="clearBtn" class="btn btn-ghost">清空列表</button>
+        </div>
+      </section>
+
+      <section class="card list-section" id="listSection" hidden>
+        <div class="list-header">
+          <h2 class="card-title">待转换列表 <span id="fileCount" class="badge">0</span></h2>
+        </div>
+        <div id="fileList" class="file-list"></div>
+      </section>
+
+      <section class="card result-section" id="resultSection" hidden>
+        <div class="list-header">
+          <h2 class="card-title">转换结果 <span id="resultCount" class="badge success">0</span></h2>
+        </div>
+        <div id="resultList" class="file-list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>纯本地处理，图片不会上传到任何服务器</p>
+    </footer>
+  </div>
+
+  <script src="../js/zip.js"></script>
+  <script src="../js/image-converter.js"></script>
+</body>
+</html>

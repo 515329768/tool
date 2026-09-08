@@ -1,44 +1,64 @@
-# 图片格式转换工具
+# 实用小工具集
 
-纯前端本地图片转换小工具，支持 PNG / JPG 格式互转、自定义尺寸、单张或批量处理。
-
-## 功能
-
-- 选择本地图片（点击或拖拽，支持多选）
-- 输出格式：PNG、JPG
-- JPG 质量可调（10% ~ 100%）
-- 尺寸：保持原尺寸 / 自定义宽高（可保持宽高比）
-- 批量转换，单张下载或 ZIP 打包下载
-- 全部在浏览器本地处理，不上传服务器
+纯前端本地小工具集合，数据不上传服务器。打开首页即可浏览全部工具。
 
 ## 使用方式
 
-1. 直接用浏览器打开 `index.html`
-2. 或通过本地 HTTP 服务访问（推荐，避免部分浏览器 file:// 限制）：
+1. 浏览器打开 `index.html` 进入工具首页
+2. 或通过本地 HTTP 服务访问：
 
 ```bash
-# Python 3
 cd D:\guandq\image-converter
 python -m http.server 8080
 ```
 
-浏览器访问：http://localhost:8080
+访问：http://localhost:8080
 
 ## 目录结构
 
 ```
 image-converter/
-├── index.html      # 主页面
-├── css/style.css   # 样式
-├── js/app.js       # 转换逻辑
-├── js/zip.js       # 本地 ZIP 打包（无 CDN 依赖）
+├── index.html                  # 工具首页（工具列表）
+├── tools/
+│   └── image-converter.html    # 图片格式转换
+├── css/
+│   ├── common.css              # 公共样式
+│   ├── home.css                # 首页样式
+│   └── tool.css                # 工具页通用样式
+├── js/
+│   ├── tools-config.js         # 工具注册表（新增工具在此配置）
+│   ├── home.js                 # 首页列表渲染
+│   ├── image-converter.js      # 图片转换逻辑
+│   └── zip.js                  # 本地 ZIP 打包
 └── README.md
 ```
 
-## 支持输入格式
+## 新增工具
 
-JPG、PNG、GIF、WebP、BMP 等浏览器可解码的图片格式。
+只需两步：
+
+**1. 在 `js/tools-config.js` 追加配置：**
+
+```javascript
+{
+  id: 'your-tool-id',
+  name: '工具名称（以作用命名）',
+  desc: '工具功能描述',
+  path: 'tools/your-tool.html',
+  tags: ['标签1', '标签2'],
+}
+```
+
+**2. 创建对应页面 `tools/your-tool.html`**
+
+可参考 `tools/image-converter.html` 的结构，引入 `../css/common.css` 及工具专用样式/脚本，并加上返回首页链接。
+
+## 当前工具
+
+| 名称 | 说明 |
+|------|------|
+| 图片格式转换 | 本地图片转 PNG / JPG，支持调整尺寸与批量处理 |
 
 ## 依赖
 
-无外部依赖，ZIP 打包由内置 `js/zip.js` 纯 JS 实现，支持离线 / `file://` 直接打开。
+无外部 CDN 依赖，ZIP 打包由内置 `js/zip.js` 实现，支持离线 / `file://` 直接打开。

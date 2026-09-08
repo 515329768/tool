@@ -1,73 +1,5 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* 图片格式转换工具页专用样式 */
 
-:root {
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --surface-hover: #22263a;
-  --border: #2d3348;
-  --text: #e8eaef;
-  --text-muted: #8b92a8;
-  --primary: #5b8def;
-  --primary-hover: #4a7de0;
-  --success: #34d399;
-  --danger: #f87171;
-  --radius: 12px;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
-
-.app {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px 20px 48px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.header h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.subtitle {
-  color: var(--text-muted);
-  margin-top: 8px;
-  font-size: 0.95rem;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-/* 上传区 */
 .drop-zone {
   border: 2px dashed var(--border);
   border-radius: var(--radius);
@@ -101,60 +33,6 @@ body {
   margin-bottom: 16px;
 }
 
-/* 按钮 */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s, opacity 0.15s;
-}
-
-.btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: var(--primary-hover);
-}
-
-.btn-secondary {
-  background: var(--border);
-  color: var(--text);
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: #3a4160;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-}
-
-.btn-ghost:hover {
-  background: var(--surface-hover);
-  color: var(--text);
-}
-
-.btn-sm {
-  padding: 6px 12px;
-  font-size: 0.8rem;
-}
-
-/* 设置区 */
 .settings-grid {
   display: grid;
   gap: 16px;
@@ -236,7 +114,6 @@ body {
   border-top: 1px solid var(--border);
 }
 
-/* 文件列表 */
 .list-header {
   display: flex;
   align-items: center;
@@ -246,22 +123,6 @@ body {
 
 .list-header .card-title {
   margin-bottom: 0;
-}
-
-.badge {
-  display: inline-block;
-  background: var(--border);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 999px;
-  margin-left: 8px;
-  font-weight: 500;
-}
-
-.badge.success {
-  background: rgba(52, 211, 153, 0.15);
-  color: var(--success);
 }
 
 .file-list {
@@ -340,18 +201,7 @@ body {
   flex-shrink: 0;
 }
 
-.footer {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-top: 16px;
-}
-
 @media (max-width: 600px) {
-  .app {
-    padding: 20px 14px 36px;
-  }
-
   .file-item {
     flex-wrap: wrap;
   }
